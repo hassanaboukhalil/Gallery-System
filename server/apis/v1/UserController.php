@@ -30,7 +30,8 @@ class UserController
         User::save();
         echo json_encode([
             "response" => 1,
-            "success" => true
+            "message" => 'User Created Successfully',
+            "isSuccess" => true
         ]);
     }
 }
