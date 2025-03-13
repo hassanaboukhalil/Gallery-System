@@ -36,6 +36,8 @@ const Signup = () => {
     try {
       const response = await axios.post(url, form);
       if (response.data.isSuccess) {
+        localStorage.setItem("id", response.data.user.id);
+        localStorage.setItem("first_name", response.data.user.first_name);
         navigate("/Home");
       } else {
         console.log("Signup failed:", response.data.message);
