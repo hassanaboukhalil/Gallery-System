@@ -27,11 +27,46 @@ class UserController
 
 
         User::create($first_name, $last_name, $email, $pass);
-        User::save();
+        $user = User::save();
         echo json_encode([
-            "response" => 1,
             "message" => 'User Created Successfully',
-            "isSuccess" => true
+            "isSuccess" => true,
+            "user" => $user
         ]);
+    }
+
+    static function login()
+    {
+        if (!issets_post_data("email", "pass")) {
+            http_response_code(400);
+            echo json_encode([
+                "message" => "email and password are required"
+            ]);
+
+            exit();
+        }
+
+        $email = $_POST["email"];
+        $pass = $_POST["pass"];
+
+        try {
+            User::create(null, null, $email, null);
+            $user = User::getUser();
+
+            if ($user && (hash('sha256', $pass) == $user['pass'])) {
+                unset($user["pass"]);
+            } else {
+                $user = null;
+            }
+
+            echo json_encode([
+                "message" => $user ? 'Login Successfull' : 'Wrong email or password',
+                "isSuccess" => $user ? true : false,
+                'user' => $user
+            ]);
+        } catch (Exception $e) {
+            http_response_code(500);
+            echo json_encode(["message" => $e->getMessage()]);
+        }
     }
 }
