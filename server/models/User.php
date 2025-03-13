@@ -12,6 +12,27 @@ class User extends UserSkeleton
         $query->bind_param("ssss", self::$first_name, self::$last_name, self::$email, self::$pass);
         $query->execute();
 
-        return true;
+        if ($query->affected_rows > 0) {
+            $user = [
+                "id" => $conn->insert_id,
+                "first_name" => self::$first_name,
+                "email" => self::$email
+            ];
+            return $user;
+        } else {
+            throw new Exception("Failed to create user.");
+        }
+    }
+    public static function getUser()
+    {
+        global $conn;
+
+        $query = $conn->prepare("SELECT * FROM users WHERE email = ?");
+        $query->bind_param("s", self::$email);
+        $query->execute();
+
+        $result = $query->get_result();
+        $user = $result->fetch_assoc();
+        return $user;
     }
 };
