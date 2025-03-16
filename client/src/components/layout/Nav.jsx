@@ -1,10 +1,16 @@
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Nav = () => {
-  let isLoggedIn = false;
+  const navigate = useNavigate();
+  let isLoggedIn = localStorage.getItem("id") ? true : false;
+
   let logout = () => {
-    // localStorage()
+    localStorage.removeItem("id");
+    localStorage.removeItem("first_name");
+    navigate("/");
   };
+
   return (
     <nav>
       <ul className="flex justify-end list-none text-white body2">
@@ -23,4 +29,5 @@ const Nav = () => {
     </nav>
   );
 };
+
 export default Nav;
