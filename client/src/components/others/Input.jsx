@@ -1,16 +1,19 @@
 const Input = ({
   label,
+  labelClasses,
   type,
   name,
   value,
   onChange,
   placeholder,
   classes,
-  // isRequired,
+  required,
 }) => {
   return label ? (
-    <div>
-      <label htmlFor={name}>{label}</label>
+    <div className="w-full">
+      <label htmlFor={name} className={`${labelClasses}`}>
+        {label}
+      </label>
       <input
         type={type}
         name={name}
@@ -18,6 +21,7 @@ const Input = ({
         onChange={onChange}
         placeholder={placeholder}
         className={`${classes}`}
+        required={required}
       />
     </div>
   ) : (
@@ -28,6 +32,7 @@ const Input = ({
       onChange={onChange}
       placeholder={placeholder}
       className={`${classes}`}
+      required={required}
     />
   );
 };

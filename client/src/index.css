@@ -46,9 +46,9 @@ body{
 .bg-secondary{
     background-color: #92E3A9;
 }
-/* .bg-tertiary{
-    background-color: #92E3A9;
-} */
+.bg-tertiary{
+    background-color: #9094A9;
+}
 
 .bg-white{
     background-color: white;
@@ -116,6 +116,12 @@ body{
 .flex{
   display: flex;
 }
+.flex-column{
+  flex-direction: column;
+}
+.flex-wrap{
+  flex-wrap: wrap;
+}
 .flex-center{
   justify-content: center;
   align-items: center;
@@ -123,6 +129,10 @@ body{
 .justify-between{
   justify-content: space-between;
 }
+.justify-around{
+  justify-content: space-around;
+}
+
 .justify-center{
   justify-content:center;
 }
@@ -138,6 +148,31 @@ body{
 /************** spacing */
 .w-full{
   width: 100%;
+}
+.h-full{
+  height: 100%;
+}
+.gap-2{
+  gap: 0.5rem;
+}
+.gap-4{
+  gap: 1rem;
+}
+.gap-8{
+  gap: 1rem;
+}
+
+
+/************** img */
+.img-auto{
+  background-size: auto;
+}
+
+
+
+/************** borders */
+.rounded-lg{
+  border-radius: 8px;
 }
 
 
@@ -162,6 +197,10 @@ body{
 
 .btn{
   border-radius: 8px;
+  cursor: pointer;
+}
+.btn-danger{
+  background-color: red;
 }
 .btn > p {
     padding: 0.5em 0.7em;
@@ -193,7 +232,7 @@ input[type="button"]{
 /************** main elements */
 .header{
   gap: 0.5rem;
-  height: 95px;  
+  height: 85px;  
 }
 
 .nav > ul {
